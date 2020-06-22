@@ -8,6 +8,12 @@
     {% endif %}
 {% endblock %}
 
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='styles/main.css') }}">
+{% endblock %}
+
 {% block navbar %}
     <div class="navbar navbar-default">Cook-o-matic: 
         <a href="{{ url_for('index') }}">Home</a>
