@@ -1,28 +1,30 @@
-<html>
-    <head>
-        {% if title %}
-        <title>{{ title }} - Cook-o-matic</title>
-        {% else %}
-        <title>Cook-o-matic - Welcome!</title>
-        {% endif %}
-    </head>
-    <body>
-        <div>Cook-o-matic: 
-            <a href="{{ url_for('index') }}">Home</a>
-            <a href="{{ url_for('new_recipe') }}">New recipe</a>
-        </div>
-        <hr>
-        
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+    {% if title %}
+    {{ title }} - Cook-o-matic
+    {% else %}
+    Cook-o-matic - Welcome!
+    {% endif %}
+{% endblock %}
+
+{% block navbar %}
+    <div class="navbar navbar-default">Cook-o-matic: 
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('new_recipe') }}">New recipe</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-        <ul>
             {% for message in messages %}
-            <li>{{ message }}</li>
+            <div class="alert alert-info" role="alert">{{ message }}</div>
             {% endfor %}
-        </ul>
         {% endif %}
         {% endwith %}
 
-        {% block content %}{% endblock %}
-    </body>
-</html>
+        {% block app_content %}{% endblock %}
+    </div>
+{% endblock %}
