@@ -1,0 +1,28 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - Cook-o-matic</title>
+        {% else %}
+        <title>Cook-o-matic - Welcome!</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>Cook-o-matic: 
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('new_recipe') }}">New recipe</a>
+        </div>
+        <hr>
+        
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </body>
+</html>

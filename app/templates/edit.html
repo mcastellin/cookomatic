@@ -1,0 +1,32 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Edit or Create Recipe</h1>
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.name.label }}<br>
+        {{ form.name(size=100) }}
+        {% for err in form.name.errors %}
+        <span style="color:red;">[{{ err }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.ingredients.label }}<br>
+        {{ form.ingredients() }}
+        {% for err in form.ingredients.errors %}
+        <span style="color:red;">[{{ err }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.directions.label }}<br>
+        {{ form.directions() }}
+        {% for err in form.directions.errors %}
+        <span style="color:red;">[{{ err }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.submit() }}
+    </p>
+{% endblock %}
