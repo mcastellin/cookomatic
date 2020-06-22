@@ -1,0 +1,7 @@
+textarea#ingredients {
+    height: 150px;
+}
+
+textarea#directions {
+    height: 400px;
+}
