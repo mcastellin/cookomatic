@@ -5,3 +5,7 @@ textarea#ingredients {
 textarea#directions {
     height: 400px;
 }
+
+img {
+    max-width: 500px;
+}
