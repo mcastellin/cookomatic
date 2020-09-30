@@ -1,0 +1,32 @@
+version: '3'
+
+volumes: 
+    cookomatic_data:
+
+services:
+    app: 
+        build: 
+            context: ..
+            dockerfile: .devcontainer/Dockerfile
+            args: 
+                VARIANT: "3.8"
+                INSTALL_NODE: "false"
+                NODE_VERSION: "lts/*"
+        volumes: 
+        - ..:/workspace:cached
+        environment:
+            FLASK_APP: cookomatic.py
+            DATABASE_URL: "mysql+pymysql://cookomatic:secret@db:3306/cookomatic"
+        command: sleep infinity
+        network_mode: service:db
+    
+    db:
+        image: mysql:5.7
+        restart: unless-stopped
+        volumes: 
+        - cookomatic_data:/var/lib/mysql
+        environment:
+            MYSQL_RANDOM_ROOT_PASSWORD: "true"
+            MYSQL_USER: "cookomatic"
+            MYSQL_PASSWORD: "secret"
+            MYSQL_DATABASE: "cookomatic"
