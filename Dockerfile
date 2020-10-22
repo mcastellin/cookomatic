@@ -5,12 +5,12 @@ RUN python -m venv /opt/venv
 
 ENV PATH="/opt/venv/bin:$PATH"
 
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip \
+    && pip install -r requirements.txt
 
 # Copying only required files to run the application
 WORKDIR /opt/cookomatic/
 COPY requirements.txt \
-    .env \
     .flaskenv \
     config.py \
     cookomatic.py \
